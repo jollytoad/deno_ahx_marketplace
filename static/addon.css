@@ -1,0 +1,37 @@
+[data-ahx-slot="sidebar"] {
+  --css-rule-source: rule;
+  --data-key: "%AUG_ID%";
+  --data-href: "%NAV_URL%";
+  --data-text: "Marketplace";
+}
+
+[data-host-app="ref"] #pages::after {
+  --hx-get: url("link.html");
+  --hx-trigger: load once;
+}
+
+[data-host-app="gitlab"] .navbar-sub-nav > .dropdown [data-testid="menu-sidebar"] [data-testid="menu-section"]:first-child::after {
+  --hx-get: url("gitlab-menu-item.html");
+  --hx-trigger: load once;
+}
+
+[data-url-path^="%NAV_PATH%"][data-host-app="ref"] {
+  --css-rule-source: rule;
+  --data-addons: --append() "%ID%";
+  --css-rule-import-style: url("style.css");
+  --css-rule-import-ref: url("ref.css");
+}
+
+[data-url-path^="%NAV_PATH%"][data-host-app="gitlab"] {
+  --css-rule-source: rule;
+  --data-addons: --append() "%ID%";
+  --css-rule-import-style: url("style.css");
+  --css-rule-import-gitlab: url("gitlab.css");
+}
+
+[data-url-path^="%NAV_PATH%"][data-host-app="backstage"] {
+  --css-rule-source: rule;
+  --data-addons: --append() "%ID%";
+  --css-rule-import-style: url("style.css");
+  --css-rule-import-backstage: url("backstage.css");
+}

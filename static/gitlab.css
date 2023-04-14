@@ -1,0 +1,3 @@
+[data-addons~="%ID%"] nav.breadcrumbs-links li:last-child a[href$="/marketplace"]::before {
+  content: "Marketplace";
+}

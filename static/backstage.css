@@ -1,0 +1,3 @@
+[data-addons~="%ID%"] h1::before {
+  content: "Addons Marketplace";
+}

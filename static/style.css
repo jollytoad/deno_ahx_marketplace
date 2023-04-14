@@ -1,0 +1,50 @@
+#_ID_-marketplace {
+  display: block;
+}
+
+.marketplace-main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2rem;
+}
+
+.marketplace-addon-list > ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1ex;
+}
+
+.marketplace-addon-list > ul > li {
+  display: block;
+}
+
+.addon-card {
+  border: 1px solid grey;
+  padding: 1ex;
+  min-width: 20ex;
+  max-width: 50ex;
+}
+
+.addon-title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.addon-categories {
+  display: block;
+  margin: 1ex;
+}
+
+.addon-category {
+  display: inline;
+  background-color: lightblue;
+  border-radius: 1ex;
+  padding: 0.5ex 1ex;
+  margin: 0 0.5ex;
+}
+
+.addon-actions {
+  display: flex;
+  justify-content: space-between;
+}
