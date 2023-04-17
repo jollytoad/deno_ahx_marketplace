@@ -1,6 +1,5 @@
 {
   "tasks": {
-    "gen": "deno run --allow-net --allow-read=./routes,./routes.ts --allow-write=./routes.ts gen.ts",
     "start": "deno run --allow-env=PORT --allow-net --allow-read --allow-write=./routes.ts --watch dev.ts",
     "start:prod": "deno run --allow-net --allow-read main.ts",
     "deploy": "deno run --allow-net --allow-read --allow-write --allow-env https://deno.land/x/deploy@1.5.0/deployctl.ts deploy --import-map=deno.json --project=ahx-preview-addon-NAME-HERE main.ts"
@@ -14,6 +13,7 @@
     "$std/": "https://deno.land/std@0.182.0/",
     "$http_fns/": "https://deno.land/x/http_fns@v0.0.7/",
     "$http_render_fns/": "https://deno.land/x/http_render_fns@v0.0.1/",
+    "$store": "https://deno.land/x/storage_modules@v0.0.2/deno_fs.ts",
     "$jsx/": "https://deno.land/x/http_render_fns@v0.0.1/jsx_preact/",
     "$jsx/jsx-runtime": "https://deno.land/x/http_render_fns@v0.0.1/jsx_preact/jsx-runtime.ts",
     "preact": "https://esm.sh/preact@10.13.2",
