@@ -1,5 +1,4 @@
 import { serve } from "$std/http/server.ts";
-import { handle } from "$http_fns/handle.ts";
 import { intercept } from "$http_fns/intercept.ts";
 import {
   logError,
@@ -7,14 +6,12 @@ import {
   logRequestGroup,
   logStatusAndContentType,
 } from "$http_fns/logger.ts";
-import routes from "@/routes.ts";
+import handler from "./handler.ts";
 
 function main(port?: number) {
   return serve(
     intercept(
-      handle([
-        routes,
-      ]),
+      handler,
       [logRequestGroup],
       [logGroupEnd, logStatusAndContentType],
       [logGroupEnd, logError],

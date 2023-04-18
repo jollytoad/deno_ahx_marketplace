@@ -11,9 +11,9 @@ import { mapData } from "$http_fns/map.ts";
 import { interceptResponse, skip } from "$http_fns/intercept.ts";
 import { Status } from "$std/http/http_status.ts";
 import type { Skip } from "$http_fns/types.ts";
-import { cascade } from "$http_fns/cascade.ts";
+import { handle } from "$http_fns/handle.ts";
 
-export default cascade(
+export default handle([
   byPattern(
     "/:marketId{/}?",
     byMethod({
@@ -44,7 +44,7 @@ export default cascade(
       ),
     }),
   ),
-);
+]);
 
 function fullPageHeaders(req: Request, res: Response | Skip) {
   if (res && !req.headers.has("HX-Request")) {
