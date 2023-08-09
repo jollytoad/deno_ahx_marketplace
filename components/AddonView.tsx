@@ -1,4 +1,5 @@
-import { notFound } from "$http_fns/response.ts";
+import { notFound } from "$http_fns/response/not_found.ts";
+import { badRequest } from "$http_fns/response/bad_request.ts";
 import { getAddon } from "@/lib/marketplace.ts";
 import { AddonCard } from "./AddonCard.tsx";
 
@@ -9,6 +10,10 @@ export async function asAddonProps(
   info: URLPatternResult,
 ): Promise<Props> {
   const { marketId, addonId } = info.pathname.groups;
+
+  if (!marketId || !addonId) {
+    throw badRequest();
+  }
 
   const addon = await getAddon(marketId, addonId);
 

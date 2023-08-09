@@ -6,11 +6,9 @@ import { byMediaType } from "$http_fns/media_type.ts";
 import { staticRoute } from "$http_fns/static.ts";
 import { asMainProps, MainView } from "@/components/MainView.tsx";
 import { AddonView, asAddonProps } from "@/components/AddonView.tsx";
-import { appendHeaders } from "$http_fns/response.ts";
+import { appendHeaders } from "$http_fns/response/append_headers.ts";
 import { mapData } from "$http_fns/map.ts";
 import { interceptResponse, skip } from "$http_fns/intercept.ts";
-import { Status } from "$std/http/http_status.ts";
-import type { Skip } from "$http_fns/types.ts";
 import { handle } from "$http_fns/handle.ts";
 
 export default handle([
@@ -33,7 +31,7 @@ export default handle([
   ),
   interceptResponse(
     staticRoute("/:marketId", import.meta.resolve("./static")),
-    skip(Status.NotFound),
+    skip(404),
   ),
   byPattern(
     "/:marketId/:addonId",
@@ -46,7 +44,7 @@ export default handle([
   ),
 ]);
 
-function fullPageHeaders(req: Request, res: Response | Skip) {
+function fullPageHeaders(req: Request, res: Response | null) {
   if (res && !req.headers.has("HX-Request")) {
     return appendHeaders(res, {
       "X-GitLab-Layout": "dashboard",

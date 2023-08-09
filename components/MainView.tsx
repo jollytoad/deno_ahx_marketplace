@@ -1,3 +1,4 @@
+import { badRequest } from "$http_fns/response/bad_request.ts";
 import { listAddons, listCategories } from "@/lib/marketplace.ts";
 import { AddonList } from "./AddonList.tsx";
 import { CategoryList } from "./CategoryList.tsx";
@@ -11,6 +12,10 @@ export async function asMainProps(
   info: URLPatternResult,
 ): Promise<Props> {
   const { marketId } = info.pathname.groups;
+
+  if (!marketId) {
+    throw badRequest();
+  }
 
   const [addons, categories] = await Promise.all([
     listAddons(marketId),

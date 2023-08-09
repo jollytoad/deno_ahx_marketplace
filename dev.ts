@@ -1,4 +1,7 @@
-import main from "./main.ts";
-import { port } from "$http_fns/port.ts";
+import { load } from "$std/dotenv/mod.ts";
+import init from "$http_fns/hosting/localhost.ts";
+import handler from "@/handler.ts";
 
-await main(port());
+await load({ export: true });
+
+await Deno.serve(await init(handler)).finished;

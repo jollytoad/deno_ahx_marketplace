@@ -1,23 +1,25 @@
 {
   "tasks": {
-    "start": "deno run --allow-env=PORT --allow-net --allow-read --allow-write=./routes.ts --watch dev.ts",
+    "start": "deno run --allow-env --allow-net --allow-read --allow-write=./routes.ts --watch dev.ts",
     "start:prod": "deno run --allow-net --allow-read main.ts",
-    "deploy": "deno run --allow-net --allow-read --allow-write --allow-env https://deno.land/x/deploy@1.5.0/deployctl.ts deploy --import-map=deno.json --project=ahx-preview-addon-NAME-HERE main.ts"
+    "deploy": "deno run --allow-net --allow-read --allow-write --allow-env https://deno.land/x/deploy@1.8.0/deployctl.ts deploy --import-map=deno.json --project=ahx-preview-addon-NAME-HERE main.ts",
+    "check": "deno fmt && deno lint && deno --unstable check **/*.ts",
+    "lock": "rm -f deno.lock && deno check main.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "$jsx"
+    "jsxImportSource": "$jsx",
+    "verbatimModuleSyntax": true
   },
   "imports": {
     "@/": "./",
-    "$std/": "https://deno.land/std@0.182.0/",
-    "$http_fns/": "https://deno.land/x/http_fns@v0.0.7/",
-    "$http_render_fns/": "https://deno.land/x/http_render_fns@v0.0.1/",
-    "$store": "https://deno.land/x/storage_modules@v0.0.2/deno_fs.ts",
-    "$jsx/": "https://deno.land/x/http_render_fns@v0.0.1/jsx_preact/",
-    "$jsx/jsx-runtime": "https://deno.land/x/http_render_fns@v0.0.1/jsx_preact/jsx-runtime.ts",
-    "preact": "https://esm.sh/preact@10.13.2",
-    "preact/": "https://esm.sh/*preact@10.13.2/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.0.2"
+    "$std/": "https://deno.land/std@0.197.0/",
+    "https://deno.land/std@0.192.0/": "https://deno.land/std@0.197.0/",
+    "$http_fns/": "https://deno.land/x/http_fns@v0.0.25/",
+    "$http_render_fns/": "https://deno.land/x/http_render_fns@v0.0.5/",
+    "$ahx_fns/": "https://deno.land/x/ahx_fns@v0.0.11/",
+    "$store": "https://deno.land/x/storage_modules@v0.0.7/deno_fs.ts",
+    "$jsx/": "https://deno.land/x/jsx_stream@v0.0.11/",
+    "$jsx/jsx-runtime": "https://deno.land/x/jsx_stream@v0.0.11/jsx-runtime.ts"
   }
 }
