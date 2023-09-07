@@ -1,5 +1,5 @@
 import { badRequest } from "$http_fns/response/bad_request.ts";
-import { listAddons, listCategories } from "@/lib/marketplace.ts";
+import { listAddons, listCategories } from "../../lib/marketplace.ts";
 import { AddonList } from "./AddonList.tsx";
 import { CategoryList } from "./CategoryList.tsx";
 

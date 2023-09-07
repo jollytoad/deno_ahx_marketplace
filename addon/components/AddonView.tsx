@@ -1,6 +1,6 @@
 import { notFound } from "$http_fns/response/not_found.ts";
 import { badRequest } from "$http_fns/response/bad_request.ts";
-import { getAddon } from "@/lib/marketplace.ts";
+import { getAddon } from "../../lib/marketplace.ts";
 import { AddonCard } from "./AddonCard.tsx";
 
 type Props = Parameters<typeof AddonCard>[0];
@@ -15,7 +15,7 @@ export async function asAddonProps(
     throw badRequest();
   }
 
-  const addon = await getAddon(marketId, addonId);
+  const addon = await getAddon(addonId, marketId);
 
   if (!addon) {
     throw notFound(`Unknown addon: ${addonId}`);

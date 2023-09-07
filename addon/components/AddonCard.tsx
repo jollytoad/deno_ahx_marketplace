@@ -1,4 +1,4 @@
-import type { Addon } from "@/lib/marketplace.ts";
+import type { Addon } from "../../types.ts";
 
 interface Props {
   addon: Addon;
