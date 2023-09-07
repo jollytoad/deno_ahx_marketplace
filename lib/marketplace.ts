@@ -20,33 +20,31 @@ export async function getAddon(
 export async function setAddon(
   addonPatch?: AddonPatch,
 ): Promise<Addon | undefined> {
-  console.log(addonPatch);
   if (addonPatch && (addonPatch.id || addonPatch.newid)) {
     const newId: string = addonPatch.newid ?? addonPatch.id!;
 
-    const addon: Addon =
-      addonPatch.id && await getItem([STORE, addonPatch.id]) || {
-        id: newId,
-        title: addonPatch.title ?? "",
-        description: addonPatch.description ?? "",
-        augmentation: addonPatch.augmentation ?? "",
-        categories: addonPatch.categories ?? [],
-        markets: addonPatch.markets ?? [],
-      };
+    const oldAddon = addonPatch.id
+      ? await getItem<Addon>([STORE, addonPatch.id])
+      : undefined;
 
-    const oldId = addon.id;
+    const newAddon: Addon = {
+      id: newId,
+      title: addonPatch.title ?? oldAddon?.title ?? "(add a titled)",
+      description: addonPatch.description ?? oldAddon?.description ??
+        "(add a description)",
+      augmentation: addonPatch.augmentation ?? oldAddon?.description ??
+        "https://add.an.augmentation.url/addon.css",
+      categories: addonPatch.categories ?? oldAddon?.categories ?? [],
+      markets: addonPatch.markets ?? oldAddon?.markets ?? [],
+    };
 
-    if (newId && newId !== oldId) {
-      addon.id = newId;
+    await setItem([STORE, newAddon.id], newAddon);
+
+    if (oldAddon && newAddon.id !== oldAddon.id) {
+      await deleteAddon(oldAddon.id);
     }
 
-    await setItem([STORE, addon.id], addon);
-
-    if (oldId && addon.id !== oldId) {
-      await deleteAddon(oldId);
-    }
-
-    return addon;
+    return newAddon;
   }
 }
 
