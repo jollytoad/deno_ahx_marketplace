@@ -10,10 +10,10 @@
   --hx-trigger: load once;
 }
 
-[data-host-app="gitlab"] .navbar-sub-nav > .dropdown [data-testid="menu-sidebar"] [data-testid="menu-section"]:first-child::after,
-[data-host-app="gitlab"] [data-testid="user-dropdown"] [data-testid="preferences-item"]::after {
+[data-host-app="gitlab"] [data-testid="user-dropdown"] ul:has([data-testid="preferences-item"])::after {
   --hx-get: url("gitlab-menu-item.html");
   --hx-trigger: load once;
+  --class: --append() gl-new-dropdown-item;
 }
 
 [data-url-path^="%NAV_PATH%"][data-host-app="ref"] {
