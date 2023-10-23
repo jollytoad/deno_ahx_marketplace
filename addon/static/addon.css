@@ -1,15 +1,26 @@
-[data-ahx-slot="sidebar"] {
+/* [data-ahx-slot="sidebar"] {
   --css-rule-source: rule;
   --data-key: "%AUG_ID%";
   --data-href: "%NAV_URL%";
   --data-text: "Marketplace";
+} */
+
+/* Insert a link to the Quiz into a panel in the ref app */
+[ahx-host~="ref"] [ahx-slot-name="addon-links"]::after {
+  --ahx-trigger: load once;
+  --ahx-get: url("link.html");
+  --ahx-swap: inner;
 }
 
-[data-host-app="ref"] #pages::after {
-  --hx-get: url("link.html");
-  --hx-trigger: load once;
+/* Indicate that the marketplace is active via an attribute on the html element */
+[ahx-url-path^="%NAV_PATH%"] {
+  --ahx-trigger: load;
+  --ahx-harvest: "%ID%";
+  --ahx-swap: attr "ahx-data-addons" join;
+  --ahx-import: url("style.css") url("ref.css");
 }
 
+/*
 [data-host-app="gitlab"] [data-testid="user-dropdown"] ul:has([data-testid="preferences-item"])::after {
   --hx-get: url("gitlab-menu-item.html");
   --hx-trigger: load once;
@@ -35,4 +46,4 @@
   --data-addons: --append() "%ID%";
   --css-rule-import-style: url("style.css");
   --css-rule-import-backstage: url("backstage.css");
-}
+} */

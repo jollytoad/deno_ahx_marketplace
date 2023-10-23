@@ -1,10 +1,4 @@
-[data-addons~="%ID%"] .breadcrumbs .blank::before,
-[data-addons~="%ID%"] main .blank.header::before {
+[ahx-data-addons~="%ID%"] .breadcrumbs .blank::before,
+[ahx-data-addons~="%ID%"] main .blank.header::before {
   content: "Marketplace";
-}
-
-[data-addons~="%ID%"] main article.blank {
-  --hx-get: url('marketplace');
-  --hx-trigger: load once;
-  --hx-swap: outerHTML;
 }

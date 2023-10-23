@@ -12,12 +12,7 @@ export function AddonCard(
   return (
     <div id={`addon-${addon.id}`} class="addon-card" data-addon-id={addon.id}>
       <div class="addon-title">
-        <a
-          hx-push-url={`${navURL ?? reqURL}/${addon.id}`}
-          hx-get={`${reqURL}/${addon.id}`}
-          hx-target="closest .marketplace-container"
-          hx-swap="outerHTML"
-        >
+        <a href={reqURL ? `${reqURL}/${addon.id}` : addon.id}>
           {addon.title}
         </a>
       </div>
