@@ -5,19 +5,27 @@
   --data-text: "Marketplace";
 } */
 
-/* Insert a link to the Quiz into a panel in the ref app */
+/* Insert a link to the marketplace into a panel in the ref app */
 [ahx-host~="ref"] [ahx-slot-name="addon-links"]::after {
   --ahx-trigger: load once;
   --ahx-get: url("link.html");
   --ahx-swap: inner;
 }
 
-/* Indicate that the marketplace is active via an attribute on the html element */
+/* When we are on a full page view of the addon */
 [ahx-url-path^="%NAV_PATH%"] {
-  --ahx-trigger: load;
+  /* Indicate that the marketplace is active via an attribute on the html element */
+  --ahx-trigger: load once;
   --ahx-harvest: "%ID%";
   --ahx-swap: attr "ahx-data-addons" join;
+
+  /* Import additional stylesheets for the marketplace */
   --ahx-import: url("style.css") url("ref.css");
+}
+
+/* To prevent a flash of unstyled content, hide the marketplace until its stylesheet has loaded */
+[ahx-url-path^="%NAV_PATH%"] .marketplace-container {
+  opacity: 0;
 }
 
 /*

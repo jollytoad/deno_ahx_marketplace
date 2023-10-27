@@ -48,3 +48,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+/* Reveal the marketplace */
+[ahx-url-path^="%NAV_PATH%"] .marketplace-container {
+  opacity: 1;
+  transition: opacity .3s ease-out;
+}
