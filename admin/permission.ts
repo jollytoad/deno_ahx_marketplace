@@ -7,7 +7,7 @@ export async function canEdit(req: Request) {
     return false;
   }
 
-  const sessionId = getSessionId(req);
+  const sessionId = await getSessionId(req);
   const claims = sessionId && await getClaims<IdClaims>(sessionId);
 
   return !!claims;

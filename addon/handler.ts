@@ -1,13 +1,13 @@
 import { renderHTML } from "$http_render_fns/render_html.tsx";
 import { renderJSON } from "$http_render_fns/render_json.ts";
-import { byPattern } from "$http_fns/pattern.ts";
-import { byMethod } from "$http_fns/method.ts";
-import { byMediaType } from "$http_fns/media_type.ts";
-import { staticRoute } from "$http_fns/static.ts";
+import { byPattern } from "$http_fns/by_pattern.ts";
+import { byMethod } from "$http_fns/by_method.ts";
+import { byMediaType } from "$http_fns/by_media_type.ts";
+import { staticRoute } from "$http_fns/static_route.ts";
 import { asMainProps, MainView } from "./components/MainView.tsx";
 import { AddonView, asAddonProps } from "./components/AddonView.tsx";
 import { appendHeaders } from "$http_fns/response/append_headers.ts";
-import { mapData } from "$http_fns/map.ts";
+import { mapData } from "$http_fns/map_data.ts";
 import { interceptResponse, skip } from "$http_fns/intercept.ts";
 import { cascade } from "$http_fns/cascade.ts";
 
